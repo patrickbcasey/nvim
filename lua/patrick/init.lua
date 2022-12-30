@@ -1,2 +1,2 @@
 require("patrick.remap")
-print("hello from patrick")
+require("patrick.set")
