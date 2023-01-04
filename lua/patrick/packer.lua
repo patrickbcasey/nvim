@@ -14,11 +14,11 @@ return require('packer').startup(function(use)
   }
 
   use({
-	  'folke/tokyonight.nvim',
-	  as = 'tokyonight',
-	  config = function()
-		  vim.cmd('colorscheme tokyonight-night')
-	  end
+      'folke/tokyonight.nvim',
+      as = 'tokyonight',
+      config = function()
+          vim.cmd('colorscheme tokyonight-night')
+      end
   })
 
   use( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -48,5 +48,7 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+
+  use("folke/zen-mode.nvim")
 
 end)
