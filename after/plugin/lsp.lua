@@ -1,17 +1,19 @@
 local lsp = require("lsp-zero")
+require("mason").setup({})
+require("mason-lspconfig").setup({
+    ensure_installed = {
+      'tsserver',
+      'eslint',
+      'lua_ls',
+      'rust_analyzer',
+      'gopls',
+    }
+})
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'sumneko_lua',
-  'rust_analyzer',
-  'gopls',
-})
-
 -- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
+require'lspconfig'.lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
@@ -20,7 +22,6 @@ lsp.configure('sumneko_lua', {
         }
     }
 })
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -36,7 +37,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
-lsp.setup_nvim_cmp({
+cmp.setup({
   mapping = cmp_mappings
 })
 
