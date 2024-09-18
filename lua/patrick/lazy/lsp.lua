@@ -1,5 +1,5 @@
 return {
-        "neovim/nvim-lspconfig",
+    "neovim/nvim-lspconfig",
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
@@ -27,8 +27,6 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "ts_ls",
-                --"rust_analyzer",
                 "gopls",
             },
             handlers = {
@@ -38,20 +36,16 @@ return {
                     }
                 end,
 
-                zls = function()
+                rust_analyzer = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
-                        root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
+                    lspconfig.rust_analyzer.setup({
+                        autostart = false,
                         settings = {
-                            zls = {
-                                enable_inlay_hints = true,
-                                enable_snippets = true,
-                                warn_style = true,
+                            rust_analyzer = {
+
                             },
                         },
                     })
-                    vim.g.zig_fmt_parse_errors = 0
-                    vim.g.zig_fmt_autosave = 0
 
                 end,
                 ["lua_ls"] = function()
